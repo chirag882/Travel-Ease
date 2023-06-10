@@ -1,23 +1,42 @@
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import {
-  BrowserRouter,
-  Route,
-  Routes
-} from "react-router-dom";
-import './resources/global.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./resources/global.css";
+import PublicRoute from "./components/PublicRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <div>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/register" element={<Register />}/>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

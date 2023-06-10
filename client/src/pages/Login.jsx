@@ -1,10 +1,24 @@
 import React from 'react'
-import { Form } from 'antd'
-import { Link } from 'react-router-dom'
+import { Form, message } from 'antd'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 const Login = () => {
 
-  const onFinish = (values) => {
-    
+  const navigate = useNavigate()
+
+  const onFinish = async(values) => {
+    try {
+      const response = await axios.post("/api/users/login",values);
+      if(response.data.success){
+        message.success(response.data.message);
+        localStorage.setItem("token",response.data.data);
+        navigate("/");
+      }else{
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      message.error(error.message);
+    }
   }
 
   return (
@@ -13,7 +27,7 @@ const Login = () => {
       <h1 className='text-lg'>TravelEase - Login</h1>
       <hr></hr>
       <Form layout='vertical' onFinish={onFinish} >
-        <Form.Item label='Name' name='name' >
+        <Form.Item label='Email' name='email' >
           <input type='text' /> 
         </Form.Item>
         <Form.Item label='Password' name='password'>
