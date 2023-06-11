@@ -5,10 +5,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./resources/global.css";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Loader from "./components/Loader";
+import { useSelector } from "react-redux";
 
 function App() {
+
+  const {loading} = useSelector(state => state.alerts)
+
   return (
     <div>
+    {loading && <Loader />}
       <BrowserRouter>
         <Routes>
           <Route
