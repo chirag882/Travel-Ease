@@ -7,11 +7,11 @@ import { HideLoading, ShowLoading } from '../redux/alertsSlice';
 const Register = () => {
 
   const dispatch = useDispatch();
-
+  const url = 'http://localhost:5000';
   const onFinish = async (values) => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.post("/api/users/register",values);
+      const response = await axios.post(`${url}/api/users/register`,values);
       dispatch(HideLoading());
       if(response.data.success){
         message.success(response.data.message);

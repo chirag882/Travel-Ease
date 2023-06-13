@@ -74,3 +74,13 @@ a{
     height: 80px !important;
     width: 80px !important; 
 }
+
+i{
+  cursor: pointer;
+  font-size: 25px;  
+}
+
+h{
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}

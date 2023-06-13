@@ -7,6 +7,9 @@ import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Loader from "./components/Loader";
 import { useSelector } from "react-redux";
+import AdminHome from "./pages/Admin/AdminHome";
+import AdminUsers from "./pages/Admin/AdminUsers";
+import AdminBuses from "./pages/Admin/AdminBuses";
 
 function App() {
 
@@ -22,6 +25,30 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminHome/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute>
+                <AdminUsers/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/buses"
+            element={
+              <ProtectedRoute>
+                <AdminBuses/>
               </ProtectedRoute>
             }
           />

@@ -5,18 +5,18 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {SetUser} from "../redux/usersSlice";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
-
+import DefaultLayout from "./DefaultLayout";
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
-  const {loading} = useSelector((state) => state.alerts);
+  const {user} = useSelector((state) => state.users);
   const navigate = useNavigate();
-
+  const url = 'http://localhost:5000';
   const validateToken = async () => {
     try {
       dispatch(ShowLoading());
       const tok = localStorage.getItem("token");  
       const response = await axios.post(
-        "/api/users/get-user-by-id",
+        `${url}/api/users/get-user-by-id`,
         {},
         {
           headers: {
@@ -49,7 +49,7 @@ const ProtectedRoute = ({ children }) => {
     }
   },[]);
 
-  return <div>{loading ? <div>loading...</div> : <>{children}</>}</div>;
+  return <div>{user && <DefaultLayout>{children}</DefaultLayout>}</div>;
 };
 
 export default ProtectedRoute;
