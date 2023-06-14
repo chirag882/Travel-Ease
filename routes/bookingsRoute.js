@@ -1,9 +1,8 @@
-const router = require("express").Router();
 const authMiddleware = require("../middlewares/authMiddleware");
 const Booking = require("../models/bookingsModel");
 const Bus = require("../models/busModel");
-const stripe = require("stripe")(process.env.stripe_key);
-const { v4: uuidv4 } = require("uuid");
+const router = require("express").Router();
+
 
 router.post("/book-seat", authMiddleware, async (req, res) => {
   try {
@@ -30,6 +29,24 @@ router.post("/book-seat", authMiddleware, async (req, res) => {
   }
 });
 
-
+router.post("/get-bookings-by-user-id", authMiddleware, async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.body.userId })
+      .populate("bus")
+      .populate("user");
+      // console.log(bookings);
+    res.status(200).send({
+      message: "Bookings fetched succesfully",
+      data: bookings,
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: "Bookings fetch failed == " + error.message,
+      data: error,
+      success: false,
+    });
+  }
+});
 
 module.exports = router;

@@ -47,7 +47,7 @@ const busSchema = new mongoose.Schema({
     },
     status: {
         type : String,
-        default: "Yet to start"
+        default: "Yet To Start"
     }
 })
 

@@ -11,9 +11,10 @@ import AdminHome from "./pages/Admin/AdminHome";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminBuses from "./pages/Admin/AdminBuses";
 import BookNow from "./pages/BookNow";
+import Bookings from "./pages/Bookings"
 
 function App() {
-
+   
   const {loading} = useSelector(state => state.alerts)
 
   return (
@@ -38,13 +39,14 @@ function App() {
             }
           />
           <Route
-            path="/admin"
+            path="/bookings"
             element={
               <ProtectedRoute>
-                <AdminHome/>
+                <Bookings />
               </ProtectedRoute>
             }
           />
+          
           <Route
             path="/admin/users"
             element={

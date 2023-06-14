@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { axiosInstance } from "../helpers/axiosinstance";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
-import {  Col, message, Row } from "antd";
+import { Col, message, Row } from "antd";
 import Bus from "../components/Bus";
 
 const Home = () => {
-
   const dispatch = useDispatch();
   const [buses, setBuses] = useState([]);
-  const {user} = useSelector(state => state.users);
-  
+  const { user } = useSelector((state) => state.users);
+
   const getBuses = async () => {
     try {
       dispatch(ShowLoading());
@@ -34,23 +33,20 @@ const Home = () => {
 
   return (
     <div>
+      <div></div>
       <div>
-
-      </div>
-      <div>
-          <Row>
-
-            {
-              buses.map((bus) => (
-                <Col lg={12} xs={24} sm={24}>
-                  <Bus bus={bus}/>
-                </Col>
-              ))
-            }
-          </Row>
+        <Row>
+          {buses
+            .filter((bus) => bus.status === "Yet To Start")
+            .map((bus) => (
+              <Col lg={12} xs={24} sm={24}>
+                <Bus bus={bus} />
+              </Col>
+            ))}
+        </Row>  
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

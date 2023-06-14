@@ -15,12 +15,12 @@ const BusForm = ({
   const dispatch = useDispatch();
   const onFinish = async (values) => {
     // console.log("values")
-    // console.log(values);
+    console.log(values);
     try {
       dispatch(ShowLoading());
       let response = null;
       if (type === "add") {
-        response = await axiosInstance.post("/api/buses/add-bus", values );
+        response = await axiosInstance.post("/api/buses/add-bus", values);
       } else {
         response = await axiosInstance.post("/api/buses/update-bus", {
           ...values,
@@ -87,22 +87,34 @@ const BusForm = ({
           </Col>
           <Col lg={8} xs={24}>
             <Form.Item label="Departure" name="departure">
-              <input type="text" />
+              <input type="time" />
             </Form.Item>
           </Col>
           <Col lg={8} xs={24}>
             <Form.Item label="Arrival" name="arrival">
-              <input type="text" />
+              <input type="time" />
             </Form.Item>
           </Col>
           <Col lg={12} xs={24}>
             <Form.Item label="Type" name="type">
-              <input type="text" />
+              <select name="" id="">
+                <option value="AC">AC</option>
+                <option value="Non-AC">Non-AC</option>
+              </select>
             </Form.Item>
           </Col>
           <Col lg={12} xs={24}>
             <Form.Item label="Fare" name="fare">
               <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col lg={12} xs={24}>
+            <Form.Item label="Status" name="status">
+              <select name="" id="">
+                <option value="Yet To Start">Yet To Start</option>
+                <option value="Running">Running</option>
+                <option value="Completed">Completed</option>
+              </select>
             </Form.Item>
           </Col>
         </Row>

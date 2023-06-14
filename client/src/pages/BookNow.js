@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { axiosInstance } from "../helpers/axiosinstance";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 import { Col, message, Row } from "antd";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SeatSelection from "../components/SeatSelection";
 
 const BookNow = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [bus, setBus] = useState(null);
 
@@ -20,7 +21,8 @@ const BookNow = () => {
       });
       dispatch(HideLoading());
       if (response.data.success) {
-        setBus(response.data.data);
+        setBus(response.data.data); 
+        
       } else {
         message.error(response.data.message);
       }
@@ -40,6 +42,7 @@ const BookNow = () => {
       dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
+        navigate("/bookings");
       } else {
         message.error(response.data.message);
       }
@@ -56,7 +59,7 @@ const BookNow = () => {
   return (
     <div>
       {bus && (
-        <Row className="mt-3" gutter={20}>
+        <Row className="mt-3" gutter={[30,30]}>
           <Col lg={12} xs={24} sm={24}>
             <h1 className="text-2xl text-secondary">{bus.name}</h1>
             <h1 className="text-md">

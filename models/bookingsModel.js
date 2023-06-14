@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema({
     bus : {
         type: mongoose.Schema.ObjectId,
-        ref: "Bus",
+        ref: "buses",
         require: true,
     },
     user : {

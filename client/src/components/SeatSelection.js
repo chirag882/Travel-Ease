@@ -17,7 +17,7 @@ const SeatSelection = ({
     }
 
   return (
-    <div>
+    <div className='ms-5'>
         <div className="bus-container">
             <Row gutter={[10,10]}>
                 {Array.from(Array(capacity).keys()).map((seat) => {
