@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { axiosInstance } from "../helpers/axiosinstance";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
@@ -31,6 +30,25 @@ const BookNow = () => {
     }
   };
 
+  const bookNow = async () => {
+    try {
+      dispatch(ShowLoading());
+      const response = await axiosInstance.post("/api/bookings/book-seat", {
+        bus: bus._id,
+        seats: selectedSeats,
+      });
+      dispatch(HideLoading());
+      if (response.data.success) {
+        message.success(response.data.message);
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
   useEffect(() => {
     getBus();
   }, []);
@@ -53,21 +71,35 @@ const BookNow = () => {
                 <b>Fare</b> : ₹ {bus.fare} /-
               </h1>
               <h1 className="text-lg">
-                <b>Departure Time</b> : {bus.departure}{" "}
+                <b>Departure Time</b> : {bus.departure}
               </h1>
               <h1 className="text-lg">
-                <b>Arrival Time</b> : {bus.arrival}{" "}
+                <b>Arrival Time</b> : {bus.arrival}
+              </h1>
+              <h1 className="text-lg">
+                <b>Capacity</b> : {bus.capacity}
+              </h1>
+              <h1 className="text-lg">
+                <b>Seats Left</b> : {bus.capacity - bus.seatsBooked.length}
               </h1>
             </div>
             <hr />
             <div className="flex flex-col gap-2">
               <h1 className="text-2xl mt-2">
-                <b>Selected Seats</b> : {selectedSeats.join(", ")}
+                Selected Seats : {selectedSeats.join(", ")}
               </h1>
               <h1 className="text-2xl">
-                <b> Fare : </b>₹ {bus.fare * selectedSeats.length}
+                Fare : ₹ {bus.fare * selectedSeats.length}
               </h1>
-              <button className="secondary-btn mt-3">Book Now</button>
+              <hr />
+              <button
+                className={`btn btn-primary ${
+                  selectedSeats.length === 0 && "disabled-btn"
+                }`}
+                onClick={bookNow}
+              >
+                Book Now
+              </button>
             </div>
           </Col>
           <Col lg={12} xs={24} sm={24}>

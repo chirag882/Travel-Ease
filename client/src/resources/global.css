@@ -42,19 +42,32 @@ input{
 }
 
 .primary-btn{
-    background-color: var(--primary);
+    background-color: var(--primary) !important;
+    color: white;
+    border : none !important;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.secondary-btn{
+    background-color: var(--secondary) !important;
     color: white;
     border : none;
     padding: 10px 20px;
     cursor: pointer;
 }
 
-.secondary-btn{
-    background-color: var(--secondary);
+.disabled-btn{
+    background-color: gray !important;
     color: white;
-    border : none;
+    border : none !important;
+    border-radius: 0 !important;
     padding: 10px 20px;
-    cursor: pointer;
+    cursor: not-allowed;
+}
+
+button{
+    border-radius: 0 !important;
 }
 
 a{
