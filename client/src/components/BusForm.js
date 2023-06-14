@@ -3,26 +3,38 @@ import { Col, Form, Modal, Row, message } from "antd";
 import { axiosInstance } from "../helpers/axiosinstance";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
-import moment from "moment";
 
-const BusForm = ({ showBusForm, setShowBusForm, type = "add" }) => {
+const BusForm = ({
+  showBusForm,
+  setShowBusForm,
+  type,
+  getData,
+  selectedBus,
+  setSelectedBus,
+}) => {
   const dispatch = useDispatch();
   const onFinish = async (values) => {
+    // console.log("values")
+    // console.log(values);
     try {
       dispatch(ShowLoading());
       let response = null;
       if (type === "add") {
-        response = await axiosInstance.post("/api/buses/add-bus", {
-          values,
-          journeyDate: moment(values.journeyDate).format("DD-MM-YYYY"),
-        });
+        response = await axiosInstance.post("/api/buses/add-bus", values );
       } else {
+        response = await axiosInstance.post("/api/buses/update-bus", {
+          ...values,
+          _id: selectedBus._id,
+        });
       }
       if (response.data.success) {
         message.success(response.data.message);
       } else {
         message.error(response.data.message);
       }
+      getData();
+      setShowBusForm(false);
+      setSelectedBus(null);
       dispatch(HideLoading());
     } catch (error) {
       message.error(error.message);
@@ -33,12 +45,15 @@ const BusForm = ({ showBusForm, setShowBusForm, type = "add" }) => {
   return (
     <Modal
       width={800}
-      title="Add Bus"
+      title={type === "add" ? "Add Bus" : "Update Bus"}
       open={showBusForm}
-      onCancel={() => setShowBusForm(false)}
+      onCancel={() => {
+        setShowBusForm(false);
+        setSelectedBus(null);
+      }}
       footer={false}
     >
-      <Form layout="vertical" onFinish={onFinish}>
+      <Form layout="vertical" onFinish={onFinish} initialValues={selectedBus}>
         <Row gutter={[10, 10]}>
           <Col lg={24} xs={24}>
             <Form.Item label="Bus Name" name="name">

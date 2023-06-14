@@ -19,20 +19,26 @@ input{
 
 .card{
     border: 2px solid gray;
-    box-shadow: 0 0 2px 2px gray;
+    border-radius: 0 !important;
+    box-shadow: 0 0 2px gray;
 }
 
 .text-2xl{
-    font-size: 30px;
+    font-size: 30px !important;
 }
 .text-xl{
-    font-size: 25px;
+    font-size: 25px !important;
 }
 .text-lg{
-    font-size: 25px;
+    font-size: 20px !important;
 }
 .text-md{
-    font-size: 18px;
+    font-size: 18px !important;
+}
+
+.underline{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .primary-btn{
@@ -80,7 +86,7 @@ i{
   font-size: 25px;  
 }
 
-h{
+h1,p{
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
