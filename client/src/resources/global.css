@@ -21,9 +21,9 @@ input , select{
 }
 
 .card{
-    border: 2px solid gray;
+    border: 2px solid rgb(189, 189, 189);
     border-radius: 0 !important;
-    box-shadow: 0 0 2px gray;
+    box-shadow: 0 0 1px gray;
 }
 
 .text-2xl{

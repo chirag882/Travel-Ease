@@ -48,12 +48,14 @@ router.post("/delete-bus",authMiddleware,async(req,res) => {
         })
     } catch (error) {
         res.status(500).send({success:false,message:error.message})
-    }
+    } 
 })
 
-router.post("/get-all-buses",authMiddleware, async(req,res) => {
+router.post("/get-all-buses", async(req,res) => {
     try {
-        const buses = await Bus.find();
+        // console.log(req.body);
+        const buses = await Bus.find(req.body);
+        // console.log(buses);
         return res.status(200).send({
             success: true,
             message: "Buses fetched successsfully",
