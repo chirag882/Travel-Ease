@@ -57,7 +57,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="my-4 card  px-2 py-3">
+      <div className="my-3 py-1">
         <Row gutter={10} align="center">
           <Col lg={6} sm={24}>
             <input
@@ -90,7 +90,7 @@ const Home = () => {
               <button className="primary-btn" onClick={() => getBuses()}>
                 Filter
               </button>
-              <button className="secondary-btn" onClick={handleCancle}>
+              <button className="outlined px-3" onClick={handleCancle}>
                 Clear
               </button>
             </div>

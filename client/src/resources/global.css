@@ -38,6 +38,12 @@ input , select{
 .text-md{
     font-size: 18px !important;
 }
+.primary-text{
+    color: var(--primary) !important;
+}
+.secondary-text{
+    color: var(--secondary) !important;
+}
 
 .underline{
     text-decoration: underline;
@@ -58,6 +64,12 @@ input , select{
     border : none;
     padding: 10px 20px;
     cursor: pointer;
+}
+
+.outlined{
+    border: 2px solid var(--primary) !important;
+    color: var(--primary) !important;
+    background-color: white !important;
 }
 
 .disabled-btn{
@@ -105,4 +117,7 @@ i{
 h1,p{
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+}
+table{
+    border: 1px solid rgb(186, 186, 186) !important;
 }
