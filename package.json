@@ -2,6 +2,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^1.54.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^8.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
@@ -21,7 +22,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix ./client",
     "dev": "concurrently \"npm run start\" \"npm run client\""
-  },
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chirag882/Travel-Ease.git"

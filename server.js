@@ -10,7 +10,7 @@ const path = require("path");
 connectDatabase();
 
 // middleware
-app.use(cors());
+app.use(cors({origin: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'./client/build')))
 

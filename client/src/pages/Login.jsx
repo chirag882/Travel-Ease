@@ -10,11 +10,10 @@ const Login = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const url = 'http://localhost:5000';
   const onFinish = async(values) => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.post(`${url}/api/users/login`,values);
+      const response = await axios.post("/api/users/login",values);
       dispatch(HideLoading());
       if(response.data.success){
         message.success(response.data.message);
