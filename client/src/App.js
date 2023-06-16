@@ -12,6 +12,7 @@ import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminBuses from "./pages/Admin/AdminBuses";
 import BookNow from "./pages/BookNow";
 import Bookings from "./pages/Bookings"
+import Profile from "./pages/Profile";
 
 function App() {
    
@@ -43,6 +44,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Bookings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

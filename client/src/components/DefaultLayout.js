@@ -46,11 +46,6 @@ const DefaultLayout = ({ children }) => {
       icon: "ri-user-line",
     },
     {
-      name: "Bookings",
-      path: "/admin/bookings",
-      icon: "ri-file-list-line",
-    },
-    {
       name: "Logout",
       path: "/logout",
       icon: "ri-logout-box-line",
